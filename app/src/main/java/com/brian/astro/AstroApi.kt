@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface AstroApi {
 
-    @GET("/planetary/apod?api_key=DEMO_KEY&count=5")
+    @GET("/planetary/apod?api_key=DEMO_KEY&count=20")
     suspend fun getAstros(): Response<List<Astro>>
 }

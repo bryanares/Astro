@@ -68,8 +68,6 @@ class HomeFragment : Fragment() {
             binding.progressBar.isVisible = false
         }
         setupRecyclerview()
-
-
     }
 
 
