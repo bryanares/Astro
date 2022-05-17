@@ -11,8 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/bookMarkFragment2"
+        android:id="@+id/bookMarkFragment"
         android:name="com.brian.astro.BookMarkFragment"
-        android:label="fragment_book_mark"
+        android:label="BookMarks"
         tools:layout="@layout/fragment_book_mark" />
 </navigation>
