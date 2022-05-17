@@ -63,9 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Save"
-                style="?attr/borderlessButtonStyle"
-                />
+                android:text="Save"/>
+<!--                style="?attr/borderlessButtonStyle"-->
         </LinearLayout>
 
         </LinearLayout>
