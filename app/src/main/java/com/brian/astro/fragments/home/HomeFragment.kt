@@ -1,4 +1,4 @@
-package com.brian.astro
+package com.brian.astro.fragments.home
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,6 +12,9 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.brian.astro.AstroAdapter
+import com.brian.astro.R
+import com.brian.astro.RetrofitInstance
 import com.brian.astro.data.Space
 import com.brian.astro.data.SpaceViewModel
 import com.brian.astro.databinding.FragmentHomeBinding
