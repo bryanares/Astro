@@ -1,38 +1,68 @@
 package com.brian.astro
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Button
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.brian.astro.databinding.AstroItemBinding
 import com.squareup.picasso.Picasso
 
-class AstroAdapter() : RecyclerView.Adapter<AstroAdapter.AstroViewHolder>() {
+class AstroAdapter(astroList:MutableList<Astro>, private val listener: HomeFragment) :
+    RecyclerView.Adapter<AstroAdapter.AstroViewHolder>() {
 
-    inner class AstroViewHolder(val binding: AstroItemBinding) : RecyclerView.ViewHolder(binding.root)
+    private lateinit var mListener: onItemClickListener
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Astro>(){
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+    }
+    fun setOnItemClickListener(listener: onItemClickListener){
+
+        mListener = listener
+    }
+
+
+    inner class AstroViewHolder(val binding: AstroItemBinding, listener: onItemClickListener) :
+        RecyclerView.ViewHolder(binding.root){
+
+            init {
+                binding.saveBtn.setOnClickListener {
+                    listener.onItemClick(adapterPosition)
+                }
+            }
+
+        }
+
+    private val diffCallback = object : DiffUtil.ItemCallback<Astro>() {
         override fun areItemsTheSame(oldItem: Astro, newItem: Astro): Boolean {
             return oldItem.title == newItem.title
         }
 
         override fun areContentsTheSame(oldItem: Astro, newItem: Astro): Boolean {
-            return  oldItem == newItem
+            return oldItem == newItem
         }
 
     }
     private val differ = AsyncListDiffer(this, diffCallback)
-    var astros : List<Astro>
-    get() = differ.currentList
-    set(value) {differ.submitList(value)}
+    var astros: List<Astro>
+        get() = differ.currentList
+        set(value) {
+            differ.submitList(value)
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AstroViewHolder {
-        return AstroViewHolder(AstroItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        ))
+        return AstroViewHolder(
+            AstroItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),
+            mListener
+        )
     }
 
     override fun onBindViewHolder(holder: AstroViewHolder, position: Int) {
@@ -47,4 +77,5 @@ class AstroAdapter() : RecyclerView.Adapter<AstroAdapter.AstroViewHolder>() {
     override fun getItemCount(): Int {
         return astros.size
     }
+
 }
