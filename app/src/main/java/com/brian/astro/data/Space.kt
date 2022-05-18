@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Space(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val title: String,
     val description: String
 )
