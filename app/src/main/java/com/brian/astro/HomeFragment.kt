@@ -1,4 +1,4 @@
-package com.brian.astro.fragments.home
+package com.brian.astro
 
 import android.os.Bundle
 import android.text.TextUtils
